@@ -16,21 +16,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 60.0,
-                ),
-                Text(
-                  'Grazac Chat',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 35.0,
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ],
+            Container(
+              child: Image.asset('images/grazac.png'),
+              height: 150.0,
+            ),
+            Text(
+              'Grazac Chat',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 35.0,
+                fontWeight: FontWeight.w900,
+              ),
             ),
             SizedBox(
               height: 48.0,
