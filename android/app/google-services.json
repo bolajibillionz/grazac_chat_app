@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "79275499728",
+    "project_id": "flutter-class-app",
+    "storage_bucket": "flutter-class-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79275499728:android:d754786207b98396de7ed5",
+        "android_client_info": {
+          "package_name": "com.appchat.grazac_chat_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79275499728-dg9mh8relo33ruq0ml82fq3s6rpj95l9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtSVEEaN3qlfHOpVXXF5gcvz4pn6iY86k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79275499728-dg9mh8relo33ruq0ml82fq3s6rpj95l9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
