@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:grazac_chat_app/screens/login_screen.dart';
 import 'package:grazac_chat_app/screens/registration_screen.dart';
+import 'package:grazac_chat_app/screens/size_config.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -10,10 +11,12 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
+    SizeConfig.init(context);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        padding:
+            EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(24.0)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -24,7 +27,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   tag: "logo",
                   child: Container(
                     child: Image.asset('images/grazac.png'),
-                    height: 65.0,
+                    height: getProportionateScreenHeight(65.0),
                   ),
                 ),
                 Text(
@@ -32,31 +35,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 35.0,
+                    fontSize: getProportionateScreenWidth(35.0),
                     fontWeight: FontWeight.w900,
                   ),
                 ),
               ],
             ),
             SizedBox(
-              height: 48.0,
+              height: getProportionateScreenHeight(48.0),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(16)),
               child: Material(
                 elevation: 5.0,
                 color: Colors.lightBlueAccent,
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginScreen()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()));
                     //Go to login screen.
                   },
-                  minWidth: 200.0,
-                  height: 42.0,
+                  minWidth: getProportionateScreenWidth(200),
+                  height: getProportionateScreenHeight(42.0),
                   child: Text(
                     'Log In',
                   ),
@@ -64,7 +66,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
+              padding: EdgeInsets.symmetric(
+                  vertical: getProportionateScreenHeight(16)),
               child: Material(
                 color: Colors.blueAccent,
                 borderRadius: BorderRadius.circular(30.0),
@@ -77,8 +80,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             builder: (context) => RegistrationScreen()));
                     //Go to registration screen.
                   },
-                  minWidth: 200.0,
-                  height: 42.0,
+                  minWidth: getProportionateScreenWidth(200),
+                  height: getProportionateScreenHeight(42),
                   child: Text(
                     'Register',
                   ),

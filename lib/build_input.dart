@@ -21,6 +21,13 @@ class BuildGeneralInput extends StatelessWidget {
       obscureText: maskText,
       controller: inputController,
       onChanged: onChanged,
+      validator: (value) {
+        if (inputController.text.isEmpty) {
+          return hint.toString();
+        } else {
+          return null;
+        }
+      },
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: TextStyle(color: Colors.black),

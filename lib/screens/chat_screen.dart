@@ -1,7 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../constants.dart';
 import 'package:flutter/material.dart';
-
-
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -9,6 +9,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final user = FirebaseAuth.instance.currentUser!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +22,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 //Implement logout functionality
               }),
         ],
-        title: Text('⚡️Chat'),
+        title: Text('⚡️Chat ${user.email}'),
         backgroundColor: Colors.lightBlueAccent,
       ),
       body: SafeArea(
@@ -54,6 +55,15 @@ class _ChatScreenState extends State<ChatScreen> {
                 ],
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  // final double _height = MediaQuery.of(context).size.height;
+                  // final double _weight = MediaQuery.of(context).size.width;
+                  FirebaseAuth.instance.signOut();
+                  // print(_height);
+                  // print(_weight);
+                },
+                child: Text('Log Out'))
           ],
         ),
       ),
