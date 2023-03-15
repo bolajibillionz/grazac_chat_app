@@ -16,18 +16,25 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              child: Image.asset('images/grazac.png'),
-              height: 150.0,
-            ),
-            Text(
-              'Grazac Chat',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 35.0,
-                fontWeight: FontWeight.w900,
-              ),
+            Row(
+              children: [
+                Hero(
+                  tag: "logo",
+                  child: Container(
+                    child: Image.asset('images/grazac.png'),
+                    height: 65.0,
+                  ),
+                ),
+                Text(
+                  'Grazac Chat',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.w900,
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 48.0,
@@ -58,6 +65,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
+                    Navigator.pushNamed(context, 'registration_screen');
                     //Go to registration screen.
                   },
                   minWidth: 200.0,
