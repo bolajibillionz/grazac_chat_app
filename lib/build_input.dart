@@ -4,15 +4,21 @@ class BuildGeneralInput extends StatelessWidget {
   BuildGeneralInput(
       {required this.inputController,
       required this.hint,
+      required this.maskText,
+      required this.inputKeyboard,
       required this.onChanged});
 
   final TextEditingController inputController;
   void Function(String)? onChanged;
   final String hint;
+  final bool maskText;
+  final TextInputType inputKeyboard;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: inputKeyboard,
+      obscureText: maskText,
       controller: inputController,
       onChanged: onChanged,
       decoration: InputDecoration(

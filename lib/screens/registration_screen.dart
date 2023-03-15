@@ -33,6 +33,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 48.0,
             ),
             BuildGeneralInput(
+              inputKeyboard: TextInputType.text,
+              maskText: false,
               inputController: _firstNameController,
               onChanged: (value) {},
               hint: 'Enter first name',
@@ -41,6 +43,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             BuildGeneralInput(
+              inputKeyboard: TextInputType.text,
+              maskText: false,
               inputController: _lastNameController,
               onChanged: (value) {},
               hint: 'Enter last name',
@@ -49,6 +53,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             BuildGeneralInput(
+              inputKeyboard: TextInputType.emailAddress,
+              maskText: false,
               inputController: _emailController,
               onChanged: (value) {},
               hint: 'Enter email',
@@ -57,6 +63,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               height: 8.0,
             ),
             BuildGeneralInput(
+              inputKeyboard: TextInputType.text,
+              maskText: true,
               inputController: _passwordController,
               onChanged: (value) {},
               hint: 'Enter password',
