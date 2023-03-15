@@ -11,13 +11,7 @@ class GrazacChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: 'welcome_screen',
-      routes: {
-        'welcome_screen': (context) => WelcomeScreen(),
-        'registration_screen': (context) => RegistrationScreen(),
-        'login_screen': (context) => LoginScreen(),
-        'chat_screen': (context) => ChatScreen(),
-      },
+      home: WelcomeScreen(),
     );
   }
 }

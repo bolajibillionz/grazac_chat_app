@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:grazac_chat_app/screens/login_screen.dart';
+import 'package:grazac_chat_app/screens/registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -47,6 +49,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LoginScreen()));
                     //Go to login screen.
                   },
                   minWidth: 200.0,
@@ -65,7 +71,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 elevation: 5.0,
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, 'registration_screen');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => RegistrationScreen()));
                     //Go to registration screen.
                   },
                   minWidth: 200.0,
