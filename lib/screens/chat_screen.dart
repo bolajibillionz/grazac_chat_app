@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:grazac_chat_app/screens/add_product.dart';
 
 import '../constants.dart';
 import 'package:flutter/material.dart';
@@ -17,13 +18,21 @@ class _ChatScreenState extends State<ChatScreen> {
         leading: null,
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.close),
+              icon: Icon(Icons.add),
               onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddProduct()));
                 //Implement logout functionality
               }),
         ],
-        title: Text('⚡️Chat ${user.email}'),
+        title: Text('Availabble Products'),
         backgroundColor: Colors.lightBlueAccent,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+        },
+        child: Icon(Icons.logout),
       ),
       body: SafeArea(
         child: Column(
@@ -59,7 +68,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 onPressed: () {
                   // final double _height = MediaQuery.of(context).size.height;
                   // final double _weight = MediaQuery.of(context).size.width;
-                  FirebaseAuth.instance.signOut();
+
                   // print(_height);
                   // print(_weight);
                 },
