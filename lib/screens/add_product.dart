@@ -223,7 +223,7 @@ class _AddProductState extends State<AddProduct> {
                 width: double.infinity,
                 child: ElevatedButton(
                     onPressed: () {
-                      // addProduct();
+                      addProduct();
                     },
                     child: Text('Submit')),
               )
@@ -368,6 +368,8 @@ class _AddProductState extends State<AddProduct> {
         await FirebaseFirestore.instance
             .collection(user.uid)
             .add(product.toJson());
+
+        print('i don finish oo');
         Navigator.pop(context);
         Navigator.pop(context);
       } on FirebaseException catch (e) {
