@@ -115,119 +115,121 @@ class _AddProductState extends State<AddProduct> {
           padding: EdgeInsets.symmetric(
               horizontal: getProportionateScreenWidth(25.0),
               vertical: getProportionateScreenHeight(20.0)),
-          child: Column(
-            children: [
-              selectedImageName.isEmpty
-                  ? Container(
-                      child: DottedBorder(
-                          color: Colors.blue, //color of dotted/dash line
-                          strokeWidth: 2, //thickness of dash/dots
-                          dashPattern: [4, 3],
-                          borderType: BorderType.RRect,
-                          radius: Radius.circular(16),
-                          child: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  isDismissible: true,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(50))),
-                                  context: context,
-                                  builder: (context) => productImagePicker());
-                            },
-                            child: Container(
-                              //inner container
-                              height: 200,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: Color(0xffECF3FC),
-                                shape: BoxShape.rectangle,
-                              ),
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 53.2,
-                                  ),
-                                  Icon(Icons.picture_in_picture),
-                                  SizedBox(
-                                    height: 24.11,
-                                  ),
-                                  Text(
-                                    'Max size limit of 2MB',
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Text('Only JPEG and PNG format are accepted')
-                                ],
-                              ),
-                            ),
-                          )),
-                    )
-                  : Container(
-                      child: DottedBorder(
-                          color: Colors.blue, //color of dotted/dash line
-                          strokeWidth: 2, //thickness of dash/dots
-                          dashPattern: [6, 6],
-                          borderType: BorderType.RRect,
-                          radius: Radius.circular(16),
-                          child: GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  isDismissible: true,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(50))),
-                                  context: context,
-                                  builder: (context) => productImagePicker());
-                            },
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              height: 200,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                selectedImageName.isEmpty
+                    ? Container(
+                        child: DottedBorder(
+                            color: Colors.blue, //color of dotted/dash line
+                            strokeWidth: 2, //thickness of dash/dots
+                            dashPattern: [4, 3],
+                            borderType: BorderType.RRect,
+                            radius: Radius.circular(16),
+                            child: GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    isDismissible: true,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(50))),
+                                    context: context,
+                                    builder: (context) => productImagePicker());
+                              },
+                              child: Container(
+                                //inner container
+                                height: 200,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16),
+                                  color: Color(0xffECF3FC),
                                   shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Image.file(
-                                _image!,
-                                fit: BoxFit.fill,
-                                alignment: Alignment.center,
+                                ),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 53.2,
+                                    ),
+                                    Icon(Icons.picture_in_picture),
+                                    SizedBox(
+                                      height: 24.11,
+                                    ),
+                                    Text(
+                                      'Max size limit of 2MB',
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text('Only JPEG and PNG format are accepted')
+                                  ],
+                                ),
                               ),
-                            ),
-                          )),
-                    ),
-              SizedBox(
-                height: getProportionateScreenHeight(10),
-              ),
-              buildProgess(),
-              SizedBox(
-                height: 20,
-              ),
-              inputField(inputController: _nameController, text: 'Enter Name'),
-              inputField(
-                  inputController: _priceController, text: 'Enter Price'),
-              inputField(
-                  inputController: _modelController, text: 'Enter Model'),
-              inputField(
-                  inputController: _descriptionController,
-                  text: 'Enter product description'),
-              SizedBox(
-                height: 50,
-              ),
-              SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {
-                      addProduct();
-                    },
-                    child: Text('Submit')),
-              )
-            ],
+                            )),
+                      )
+                    : Container(
+                        child: DottedBorder(
+                            color: Colors.blue, //color of dotted/dash line
+                            strokeWidth: 2, //thickness of dash/dots
+                            dashPattern: [6, 6],
+                            borderType: BorderType.RRect,
+                            radius: Radius.circular(16),
+                            child: GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    isDismissible: true,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.vertical(
+                                            top: Radius.circular(50))),
+                                    context: context,
+                                    builder: (context) => productImagePicker());
+                              },
+                              child: Container(
+                                margin: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                height: 200,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: BorderRadius.circular(20)),
+                                child: Image.file(
+                                  _image!,
+                                  fit: BoxFit.fill,
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            )),
+                      ),
+                SizedBox(
+                  height: getProportionateScreenHeight(10),
+                ),
+                buildProgess(),
+                SizedBox(
+                  height: 20,
+                ),
+                inputField(inputController: _nameController, text: 'Enter Name'),
+                inputField(
+                    inputController: _priceController, text: 'Enter Price'),
+                inputField(
+                    inputController: _modelController, text: 'Enter Model'),
+                inputField(
+                    inputController: _descriptionController,
+                    text: 'Enter product description'),
+                SizedBox(
+                  height: 50,
+                ),
+                SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        addProduct();
+                      },
+                      child: Text('Submit')),
+                )
+              ],
+            ),
           ),
         ),
       ),
