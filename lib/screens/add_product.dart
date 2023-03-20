@@ -1,10 +1,12 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/services.dart';
+import 'package:grazac_chat_app/screens/product_model.dart';
 import 'package:grazac_chat_app/screens/size_config.dart';
 import 'package:grazac_chat_app/screens/util.dart';
 import 'package:image_picker/image_picker.dart';
@@ -198,10 +200,10 @@ class _AddProductState extends State<AddProduct> {
                             ),
                           )),
                     ),
-                    SizedBox(
-                      height: getProportionateScreenHeight(10),
-                    ),
-                    buildProgess(),
+              SizedBox(
+                height: getProportionateScreenHeight(10),
+              ),
+              buildProgess(),
               SizedBox(
                 height: 20,
               ),
@@ -340,5 +342,37 @@ class _AddProductState extends State<AddProduct> {
         ),
       ],
     );
+  }
+
+  Future addProduct() async {
+    final isValid = _regKey.currentState!.validate();
+    if (!isValid) return;
+    if (imageUrl == null) {
+      failureSnackBar(context: context, message: 'Upload product image');
+    } else {
+      showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (context) => Center(
+                child: CircularProgressIndicator(),
+              ));
+
+      ProductModel product = ProductModel(
+          image: imageUrl,
+          price: _priceController.text,
+          productModel: _modelController.text,
+          description: _descriptionController.text,
+          productName: _nameController.text);
+
+      try {
+        await FirebaseFirestore.instance
+            .collection(user.uid)
+            .add(product.toJson());
+        Navigator.pop(context);
+        Navigator.pop(context);
+      } on FirebaseException catch (e) {
+        failureSnackBar(context: context, message: e.message.toString());
+      }
+    }
   }
 }
