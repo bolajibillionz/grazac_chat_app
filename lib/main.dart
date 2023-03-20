@@ -14,7 +14,7 @@ Future main() async {
   //the app for class
 
   runApp(DevicePreview(
-    enabled: true,
+    enabled: false,
     builder: (context) => 
     
      GrazacChat()));
