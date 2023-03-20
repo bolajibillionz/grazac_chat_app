@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/services.dart';
@@ -37,7 +38,7 @@ class _AddProductState extends State<AddProduct> {
           selectedImageName = image.path.split('/').last;
         });
         Navigator.pop(context);
-        // uploadFile();
+        uploadFile();
       } else {
         Navigator.pop(context);
         warningSnackBar(context: context, message: 'No Image picked');
@@ -46,6 +47,58 @@ class _AddProductState extends State<AddProduct> {
       print(e.message);
     }
   }
+
+  UploadTask? uploadTask;
+
+  Future uploadFile() async {
+    final _path = 'productImages/${selectedImageName}';
+    final _file = File(selectedImagePath);
+
+    final imageRef = FirebaseStorage.instance.ref().child(_path);
+    setState(() {
+      uploadTask = imageRef.putFile(_file);
+    });
+
+    print(imageUrl);
+
+    final snapshot = await uploadTask!.whenComplete(() {});
+    final imageLink = await snapshot.ref.getDownloadURL();
+    imageUrl = imageLink;
+    print(imageLink);
+    print('okokokok');
+    print(imageUrl);
+
+    setState(() {
+      uploadTask = null;
+    });
+  }
+
+  Widget buildProgess() => StreamBuilder<TaskSnapshot>(
+      stream: uploadTask?.snapshotEvents,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          final data = snapshot.data!;
+          double progress = data.bytesTransferred / data.totalBytes;
+          return SizedBox(
+            height: getProportionateScreenHeight(30.0),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                LinearProgressIndicator(
+                  value: progress,
+                  backgroundColor: Colors.grey,
+                  color: Colors.green,
+                ),
+                Center(
+                  child: Text('${(100 * progress).roundToDouble()}% uploaded'),
+                )
+              ],
+            ),
+          );
+        } else {
+          return SizedBox();
+        }
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +132,7 @@ class _AddProductState extends State<AddProduct> {
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(50))),
                                   context: context,
-                                  builder: (context) =>productImagePicker());
+                                  builder: (context) => productImagePicker());
                             },
                             child: Container(
                               //inner container
@@ -127,7 +180,7 @@ class _AddProductState extends State<AddProduct> {
                                       borderRadius: BorderRadius.vertical(
                                           top: Radius.circular(50))),
                                   context: context,
-                                  builder: (context) =>productImagePicker());
+                                  builder: (context) => productImagePicker());
                             },
                             child: Container(
                               margin: EdgeInsets.symmetric(
@@ -145,6 +198,10 @@ class _AddProductState extends State<AddProduct> {
                             ),
                           )),
                     ),
+                    SizedBox(
+                      height: getProportionateScreenHeight(10),
+                    ),
+                    buildProgess(),
               SizedBox(
                 height: 20,
               ),
@@ -168,7 +225,6 @@ class _AddProductState extends State<AddProduct> {
                     },
                     child: Text('Submit')),
               )
-
             ],
           ),
         ),
