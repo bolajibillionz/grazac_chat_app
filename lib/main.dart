@@ -11,6 +11,8 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
+  //the app for class
+
   runApp(DevicePreview(
     enabled: true,
     builder: (context) => 
